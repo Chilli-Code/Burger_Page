@@ -1,0 +1,97 @@
+import React from "react";
+import BiryaniImg1 from "../../assets/burger/burger1.png";
+import BiryaniImg2 from "../../assets/burger/burger2.png";
+import BiryaniImg3 from "../../assets/burger/burger3.png";
+import Vector from "../../assets/vector.png";
+
+const ImageList = [
+  {
+    id: 1,
+    img: BiryaniImg1,
+  },
+  {
+    id: 2,
+    img: BiryaniImg2,
+  },
+  {
+    id: 3,
+    img: BiryaniImg3,
+  },
+];
+
+const bgImage = {
+  backgroundImage: `url(${Vector})`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  height: "100%",
+};
+
+const Hero = () => {
+  const [imageId, setImageId] = React.useState(BiryaniImg1);
+  return (
+    <div style={bgImage} className="min-h-[650px] bg-gray-100">
+      <div className="min-h-[650px] backdrop-blur-md flex justify-center items-center">
+        <div className="container pb-8 sm:pb-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+            {/* Sección de contenido de texto */}
+            <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1">
+              <h1
+              data-aos="zoom-out"
+              className="text-5xl sm:text-6xl md:text-7xl font-bold">
+                Bienvenido a
+                <span
+                  className="bg-clip-text text-transparent bg-gradient-to-b from-primary to-secundary drop-shadow-[4px_4px_0_rgba(255,255,255,1)]"
+                  style={{
+                    filter: "drop-shadow(4px 4px 0 rgba(255,255,255,1))",
+                  }}
+                >
+                  Burger
+                </span>
+                King
+              </h1>
+              <p
+              data-aos="fade-up"
+              className="text-sm">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Reiciendis sed unde optio illum harum ab ipsam deserunt, id fuga
+                rerum.
+              </p>
+              <div data-aos="fade-up">
+                <button className="bg-gradient-to-r from-primary to-white hover:scale-105 duration-200 text-black font-bold py-2 px-4 rounded-full border-2 border-white">
+                Ordenar Ahora
+                </button>
+              </div>
+            </div>
+            {/* sección de imagen */}
+            <div className="min-h-[400px] flex justify-center items-center relative order-1 sm:order-2">
+              {/* Main image */}
+              <div data-aos="false-left" data-aos-delay="300">
+                <img
+                  src={imageId}
+                  alt="biryani img"
+                  className="max-w[430px] hover:scale-105 duration-300 w-full mx-auto drop-shadow-[-6px_20px_15px_rgba(0,0,0,1)]"
+                />
+              </div>
+              {/* Sección de lista de imágenes */}
+              <div className="flex lg:flex-col lg:top-1/2 lg:-translate-y-1/2 lg:py-2 justify-center gap-4 absolute bottom-[-30px] lg:-right-10 bg-white/30 rounded-full">
+                {ImageList.map((item) => (
+                  <div data-aos="zoom-in" data-aos-offset="0" key={item.id}>
+                    <img
+                      src={item.img}
+                      alt=""
+                      onClick={() => setImageId(item.id == 1 ? BiryaniImg1 : item.id == 2 ? BiryaniImg2 : BiryaniImg3)}
+                    className="mx-w-[80px] h-[80px] object-contain inline-block hover:scale-105 duration-200"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
